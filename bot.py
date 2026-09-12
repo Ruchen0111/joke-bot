@@ -1,7 +1,10 @@
 import telebot
 
 # ⚠️ ЗАМЕНИ на свой токен из BotFather
-BOT_TOKEN = "8963193595:AAFWvW2IKG5m_VuLaPL8tlHWpDdHHM_Zf-U"
+# Было: BOT_TOKEN = "ваш_длинный_токен"
+# Станет:
+import os
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 # ⚠️ Имя файла с твоей картинкой (если назвал pic.jpg — оставь так)
 IMAGE_PATH = "pic.png"
@@ -11,7 +14,6 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=["start"])
 def cmd_start(message):
-    # Открываем картинку и отправляем
     with open(IMAGE_PATH, "rb") as photo:
         bot.send_photo(message.chat.id, photo)
 
@@ -24,3 +26,4 @@ def fallback(message):
 if __name__ == "__main__":
     print("Бот запущен...")
     bot.infinity_polling()
+    
