@@ -1,12 +1,10 @@
-import telebot
-
-# ⚠️ ЗАМЕНИ на свой токен из BotFather
-# Было: BOT_TOKEN = "ваш_длинный_токен"
-# Станет:
 import os
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
+import telebot
+from dotenv import load_dotenv
 
-# ⚠️ Имя файла с твоей картинкой (если назвал pic.jpg — оставь так)
+load_dotenv()  # ← читает файл .env и подставляет значения в os.environ
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 IMAGE_PATH = "pic.png"
 
 bot = telebot.TeleBot(BOT_TOKEN)
